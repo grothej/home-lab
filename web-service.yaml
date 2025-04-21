@@ -20,11 +20,13 @@ spec:
     spec:
       containers:
         - name: web-service
-          image: nginx:alpine-stable
+          image: docker.io/nginx:stable-alpine
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 80
               name: http
+            - containerPort: 443
+              name: https
           livenessProbe:
             httpGet:
               path: /
@@ -44,4 +46,8 @@ spec:
   ports:
     - port: 80
       targetPort: http
+      name: http
+    - port: 443
+      targetPort: https
+      name: https
       
